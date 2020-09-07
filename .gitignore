@@ -1,3 +1,8 @@
+docker/mysql/data
+phpmyadmin
+.env
+.vscode
+
 # CakePHP 3
 
 /vendor/*
