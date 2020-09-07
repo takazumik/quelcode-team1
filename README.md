@@ -1,4 +1,8 @@
 # quelcode-team1
+
+## DB定義書
+- [ユーザー関連](https://docs.google.com/spreadsheets/d/18hvyp6hDlU2GnhVJDORL7L7CbvlZqpaQZNnV4uDBZ6A/edit#gid=0)
+
 ## セットアップ手順
 
 1. このリポジトリの master ブランチをチェックアウトする
