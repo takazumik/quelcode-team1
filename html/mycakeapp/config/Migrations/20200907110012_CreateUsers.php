@@ -24,12 +24,12 @@ class CreateUsers extends AbstractMigration
             'null' => false,
         ]);
         $table->addColumn('is_deleted', 'boolean', [
-            'default' => null,
+            'default' => 0,
             'limit' => 1,
             'null' => false,
         ]);
         $table->addColumn('is_registrated', 'boolean', [
-            'default' => null,
+            'default' => 0,
             'limit' => 1,
             'null' => false,
         ]);
