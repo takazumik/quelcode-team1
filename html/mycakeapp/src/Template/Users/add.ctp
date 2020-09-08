@@ -1,26 +1,12 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
- */
+<?=
+    $this->Form->create($user, [
+        'type' => 'post',
+        'url' => ['controller' => 'Users', 'action' => 'add'],
+    ]);
+echo $this->Form->control('email', ['type' => 'email', 'label' => 'メールアドレス']);
+echo $this->Form->control('password', ['label' => 'パスワード']);
+echo $this->Form->control('password', ['label' => 'パスワード（確認用）']);
+echo $this->Form->submit('会員登録');
+echo $this->Form->end();
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Add User') ?></legend>
-        <?php
-            echo $this->Form->control('email');
-            echo $this->Form->control('password');
-            echo $this->Form->control('is_deleted');
-            echo $this->Form->control('is_registrated');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+
