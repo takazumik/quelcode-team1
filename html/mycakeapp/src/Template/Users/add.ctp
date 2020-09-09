@@ -6,6 +6,7 @@
         'url' => ['controller' => 'Users', 'action' => 'add'],
     ]);
 ?>
+<div class="title">会員登録</div>
 <div class="wrapper">
     <?php
     echo $this->Form->control('email', ['type' => 'email', 'label' => 'メールアドレス', 'required' => 'false']);
