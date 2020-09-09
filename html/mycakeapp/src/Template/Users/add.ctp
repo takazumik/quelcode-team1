@@ -1,10 +1,12 @@
 <?=
+    $this->Html->css('user.css'); ?>
+<?=
     $this->Form->create($user, [
         'type' => 'post',
         'url' => ['controller' => 'Users', 'action' => 'add'],
     ]);
 ?>
-<div>
+<div class="wrapper">
     <?php
     echo $this->Form->control('email', ['type' => 'email', 'label' => 'メールアドレス', 'required' => 'false']);
     echo $this->Form->control('password', ['type' => 'password', 'label' => 'パスワード']);
@@ -13,5 +15,3 @@
     echo $this->Form->end();
     ?>
 </div>
-
-?>
