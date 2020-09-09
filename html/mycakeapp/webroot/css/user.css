@@ -1,6 +1,6 @@
 body{
     background: #ebebeb;
-    color: #777;
+    color: #aaa;
 }
 .title{
     padding:  50px 0px 20px 0px;
@@ -9,6 +9,7 @@ body{
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 1px;
+    color: #777;
 }
 .wrapper{
     background: #fff;
