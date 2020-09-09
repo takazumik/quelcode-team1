@@ -1,33 +1,37 @@
 body{
-    background: #ebebeb;
+    background: #EBEBEB;
     color: #aaa;
 }
 .title{
-    padding:  50px 0px 20px 0px;
+    padding:  83px 0px 36px 0px;
     margin: 0 auto;
     text-align: center;
-    font-size: 15px;
+    font-size: 25px;
+    line-height: 34px;
     font-weight: bold;
-    letter-spacing: 1px;
-    color: #777;
+    letter-spacing: 0.89px;
+    color: #707070;
 }
 .wrapper{
     background: #fff;
     margin: 0 auto;
     letter-spacing: 1px;
-    width: 500px;
-    height: 400px;
+    width: 736px;
+    height: 552px;
 }
 .inner{
-    height: 65px;
+    height: 118px;
 }
 label{
     display: inline;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.27px;
     margin: 0px 100px 20px 100px;
 }
 input[type=email],
 input[type=password]{
-    width: 280px;
+    width: 336px;
     height: 25px;
     margin: 0px 100px 30px 100px;
     border-top: 1px solid #ccc;
@@ -36,12 +40,14 @@ input[type=password]{
     border-bottom: 0px solid #aaa;
 }
 input[type=submit]{
-    width: 280px;
-    height: 32px;
+    width: 336px;
+    height: 48px;
     margin: 0px 100px 45px 100px;
     color: #fff;
-    background: #e09d00;
+    background: #F5AE0B;
     border: 0px;
-    font-size: 13px;
-    letter-spacing: 1px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 22px;
+    letter-spacing: 0.44px;
 }
