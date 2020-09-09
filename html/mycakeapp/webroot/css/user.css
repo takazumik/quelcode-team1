@@ -30,6 +30,10 @@ input[type=password]{
     width: 280px;
     height: 25px;
     margin: 0px 100px 30px 100px;
+    border-top: 1px solid #ccc;
+    border-left: 0px solid #aaa;
+    border-right: 0px solid #aaa;
+    border-bottom: 0px solid #aaa;
 }
 input[type=submit]{
     width: 280px;
