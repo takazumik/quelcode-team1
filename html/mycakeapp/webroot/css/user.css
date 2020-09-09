@@ -19,7 +19,7 @@ body{
     height: 400px;
 }
 .inner{
-    height: 55px;
+    height: 65px;
 }
 label{
     display: inline;
@@ -34,7 +34,7 @@ input[type=password]{
 input[type=submit]{
     width: 280px;
     height: 32px;
-    margin: 0px 100px 55px 100px;
+    margin: 0px 100px 45px 100px;
     color: #fff;
     background: #e09d00;
     border: 0px;
