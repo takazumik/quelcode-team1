@@ -11,13 +11,24 @@ body{
     letter-spacing: 1px;
 }
 .wrapper{
-    
     background: #fff;
     margin: 0 auto;
     letter-spacing: 1px;
-    width: 400px;
+    width: 500px;
+    height: 350px;
+}
+label{
+    display: inline;
+    margin: 0px 100px 20px 100px;
 }
 input[type=email],
 input[type=password]{
-    width: 250px;
+    width: 280px;
+    height: 25px;
+    margin: 0px 100px 0px 100px;
+}
+input[type=submit]{
+    width: 280px;
+    height: 25px;
+    margin: 0px 100px 20px 100px;
 }
