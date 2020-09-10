@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
 use Token\Util\Token;
+
 /**
  * Users Controller
  *
@@ -53,15 +55,15 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'verify']);
+                $this->setAction('mail', $user);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
-
-
-
+    }
+    public function mail($user)
+    {
+        $this->set(compact('user'));
     }
     //token認証のメソッド
     public function verify($token)
@@ -70,13 +72,8 @@ class UsersController extends AppController
         if (!$user->tokenVerify($token)) {
             $this->Flash->error(__('URLが無効です。'));
         }
-
         // ユーザーステータスを本登録にする。
         $this->Users->activate($user);
-
         $this->Flash->success('認証完了しました。ログインしてください。');
     }
-
-
-
 }
