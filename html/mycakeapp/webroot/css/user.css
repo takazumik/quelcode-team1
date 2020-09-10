@@ -6,7 +6,7 @@ body{
     padding:  83px 0px 36px 0px;
     margin: 0 auto;
     text-align: center;
-    font-size: 36px;
+    font-size: 25px;
     line-height: 34px;
     font-weight: bold;
     letter-spacing: 0.89px;
@@ -35,7 +35,7 @@ input[type=password_check]
 {
     width: 336px;
     height: 36px;
-    margin: 0px 100px 30px 100px;
+    margin: 0px 200px 30px 200px;
     border-top: 1px solid #ccc;
     border-left: 0px solid #aaa;
     border-right: 0px solid #aaa;
