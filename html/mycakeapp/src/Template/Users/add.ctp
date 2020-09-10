@@ -13,7 +13,7 @@
     <?php
     echo $this->Form->control('email', ['type' => 'email', 'placeholder' => 'メールアドレス', 'required' => false, 'label' => false]);
     echo $this->Form->control('password', ['type' => 'password', 'placeholder' => 'パスワード', 'required' => false, 'label' => false]);
-    echo $this->Form->control('password', ['type' => 'password_check', 'placeholder' => 'パスワード（確認用）', 'required' => false, 'label' => false]);
+    echo $this->Form->control('password_check', ['type' => 'password', 'placeholder' => 'パスワード（確認用）', 'required' => false, 'label' => false]);
     echo $this->Form->submit('会員登録');
     echo $this->Form->end();
     ?>
