@@ -54,7 +54,7 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'verify']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -75,7 +75,6 @@ class UsersController extends AppController
         $this->Users->activate($user);
 
         $this->Flash->success('認証完了しました。ログインしてください。');
-        return $this->redirect(['action' => 'login']);
     }
 
 
