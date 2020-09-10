@@ -1,6 +1,6 @@
 body{
     background: #EBEBEB;
-    color: #aaa;
+    color: #ff0000;
 }
 .title{
     padding:  83px 0px 36px 0px;
@@ -52,4 +52,11 @@ input[type=submit]{
     font-weight: bold;
     line-height: 22px;
     letter-spacing: 0.44px;
+}
+.error-message{
+    margin: -60px 215px 0px 185px;
+    font-size: 7px;
+}
+ul{
+    list-style: none;
 }
