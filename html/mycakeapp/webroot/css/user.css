@@ -30,7 +30,9 @@ label{
     margin: 0px 100px 20px 100px;
 }
 input[type=email],
-input[type=password]{
+input[type=password],
+input[type=password_check]
+{
     width: 336px;
     height: 25px;
     margin: 0px 100px 30px 100px;
