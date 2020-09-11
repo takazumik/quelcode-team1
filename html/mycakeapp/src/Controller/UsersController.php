@@ -56,8 +56,9 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
                 $this->setAction('mail', $user);
+            }else{
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
     }
@@ -68,12 +69,17 @@ class UsersController extends AppController
     //token認証のメソッド
     public function verify($token)
     {
+        $user_id =$this->request->getQuery();
         $user = $this->Users->get(Token::getId($token));
         if (!$user->tokenVerify($token)) {
             $this->Flash->error(__('URLが無効です。'));
         }
         // ユーザーステータスを本登録にする。
-        $this->Users->activate($user);
-        $this->Flash->success('認証完了しました。ログインしてください。');
+        $entity=$this->Users->get($user_id);
+        $data=array(
+            'is_registrated'=>1
+        );
+        $user = $this->Users->patchEntity($entity, $data);
+        $this->Users->save($user);
     }
 }
