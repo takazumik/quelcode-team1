@@ -15,12 +15,10 @@ body{
 .wrapper{
     background: #fff;
     margin: 0 auto;
+    padding-top: 118px;
     letter-spacing: 1px;
     width: 736px;
     height: 552px;
-}
-.inner{
-    height: 118px;
 }
 label{
     display: inline;

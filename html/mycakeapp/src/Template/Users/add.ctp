@@ -8,8 +8,6 @@
 ?>
 <div class="title">会員登録</div>
 <div class="wrapper">
-    <div class="inner">
-    </div>
     <?php
     echo $this->Form->control('email', ['type' => 'email', 'placeholder' => 'メールアドレス', 'required' => false, 'label' => false]);
     echo $this->Form->control('password', ['type' => 'password', 'placeholder' => 'パスワード', 'required' => false, 'label' => false]);
