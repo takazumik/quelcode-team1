@@ -35,8 +35,6 @@ class User extends Entity
         'password' => true,
         'is_deleted' => true,
         'is_registrated' => true,
-        'created' => true,
-        'modified' => true,
     ];
 
     /**
