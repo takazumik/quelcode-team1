@@ -16,34 +16,6 @@ use Token\Util\Token;
 class UsersController extends AppController
 {
     /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
-    public function index()
-    {
-        $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => [],
-        ]);
-
-        $this->set('user', $user);
-    }
-
-    /**
      * registration method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -56,28 +28,28 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
                 $this->setAction('mail', $user);
-            }else{
+            } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('user'));
     }
+    //AWSにてメール送信行うため、仮の実装。
     public function mail($user)
     {
         $this->set(compact('user'));
     }
-    //token認証のメソッド
+    //token認証のメソッド。プラグインを使用。
     public function verify($token)
     {
-        $user_id =$this->request->getQuery();
+        $user_id = $this->request->getQuery();
         $user = $this->Users->get(Token::getId($token));
         if (!$user->tokenVerify($token)) {
             $this->Flash->error(__('URLが無効です。'));
         }
         // ユーザーステータスを本登録にする。
-        $entity=$this->Users->get($user_id);
-        $data=array(
-            'is_registrated'=>1
+        $entity = $this->Users->get($user_id);
+        $data = array(
+            'is_registrated' => 1
         );
         $user = $this->Users->patchEntity($entity, $data);
         $this->Users->save($user);

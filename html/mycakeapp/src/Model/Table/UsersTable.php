@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -52,22 +53,22 @@ class UsersTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->email('email',false,'メールアドレスが間違っているようです')
+            ->email('email', false, 'メールアドレスが間違っているようです')
             ->requirePresence('email', 'create')
-            ->notEmptyString('email','空白になっています');
+            ->notEmptyString('email', '空白になっています');
 
         $validator
             ->scalar('password')
             ->requirePresence('password', 'create')
-            ->lengthBetween('password', [4, 13],'パスワードは4文字以上、13文字以下にしてください') 
-            ->alphaNumeric('password','パスワードに使えない文字が入力されています')
-            ->notEmptyString('password','空白になっています')
-            ->add('password',[  
-                'comparePassword' => [ 
-                    'rule' => ['compareWith','password_check'],  
-                    'message' => 'パスワードが一致していません'  
+            ->lengthBetween('password', [4, 13], 'パスワードは4文字以上、13文字以下にしてください')
+            ->alphaNumeric('password', 'パスワードに使えない文字が入力されています')
+            ->notEmptyString('password', '空白になっています')
+            ->add('password', [
+                'comparePassword' => [
+                    'rule' => ['compareWith', 'password_check'],
+                    'message' => 'パスワードが一致していません'
                 ]
-        ]);
+            ]);
 
         $validator
             ->boolean('is_deleted')
