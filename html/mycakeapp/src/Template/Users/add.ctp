@@ -7,6 +7,7 @@
         $this->Form->create($user, [
             'type' => 'post',
             'url' => ['controller' => 'Users', 'action' => 'add'],
+            'novalidate' => true
         ]);
     ?>
     <?php
