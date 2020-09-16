@@ -23,6 +23,7 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
+        $this->set(compact('user'));
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
