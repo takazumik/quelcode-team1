@@ -1,13 +1,14 @@
 <?=
     $this->Html->css('user.css'); ?>
-<?=
-    $this->Form->create($user, [
-        'type' => 'post',
-        'url' => ['controller' => 'Users', 'action' => 'add'],
-    ]);
-?>
 <h1>会員登録</h1>
+
 <div class="wrapper">
+    <?=
+        $this->Form->create($user, [
+            'type' => 'post',
+            'url' => ['controller' => 'Users', 'action' => 'add'],
+        ]);
+    ?>
     <?php
     echo $this->Form->control('email', ['type' => 'email', 'placeholder' => 'メールアドレス', 'required' => false, 'label' => false]);
     echo $this->Form->control('password', ['type' => 'password', 'placeholder' => 'パスワード', 'required' => false, 'label' => false]);
@@ -15,5 +16,4 @@
     echo $this->Form->submit('会員登録');
     echo $this->Form->end();
     ?>
-
 </div>
