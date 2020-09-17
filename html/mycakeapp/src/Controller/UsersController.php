@@ -23,7 +23,6 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
-        $this->set(compact('user'));
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -33,6 +32,8 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
+        $this->set(compact('user'));
+
     }
     //AWSにてメール送信行うため、仮の実装。
     public function mail($user)
