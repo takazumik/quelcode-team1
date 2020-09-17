@@ -59,40 +59,23 @@ class UsersController extends AppController
         $this->Users->save($user);
     }
 
-    public function initialize()
+
+    public function login()
     {
-        parent::initialize();
-        $this->loadModel('Users');
-        // ログインしているユーザー情報をauthuserに設定
-        $this->set('authuser', $this->Auth->user());
-    }
-    // ログイン処理
-    function login()
-    {
-        // POST時の処理
-        if ($this->request->isPost()) {
+        if ($this->request->is('post')) {
             $user = $this->Auth->identify();
-            // Authのidentifyをユーザーに設定
-            if (!empty($user)) {
+            if ($user) {
                 $this->Auth->setUser($user);
-                // return $this->redirect($this->Auth->redirectUrl());
-                return $this->redirect(['controller' => 'Auction', 'action' => 'index']);
+                return $this->redirect($this->Auth->redirectUrl('/users'));
             }
-            $this->Flash->error('ユーザー名かパスワードが間違っています。');
+            $this->Flash->error('ユーザー名またはパスワードが不正です。');
         }
     }
+
     // ログアウト処理
     public function logout()
     {
-        // セッションを破棄
-        $this->request->session()->destroy();
+        $this->Flash->success('ログアウトしました。');
         return $this->redirect($this->Auth->logout());
-    }
-
-    // 認証を使わないページの設定
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        $this->Auth->allow(['login', 'add']);
     }
 }
