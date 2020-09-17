@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Cake\Auth\DefaultPasswordHasher; //added
+use Cake\Event\Event; //added
+
 use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
 use Token\Util\Token;
@@ -54,5 +57,42 @@ class UsersController extends AppController
         );
         $user = $this->Users->patchEntity($entity, $data);
         $this->Users->save($user);
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadModel('Users');
+        // ログインしているユーザー情報をauthuserに設定
+        $this->set('authuser', $this->Auth->user());
+    }
+    // ログイン処理
+    function login()
+    {
+        // POST時の処理
+        if ($this->request->isPost()) {
+            $user = $this->Auth->identify();
+            // Authのidentifyをユーザーに設定
+            if (!empty($user)) {
+                $this->Auth->setUser($user);
+                // return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect(['controller' => 'Auction', 'action' => 'index']);
+            }
+            $this->Flash->error('ユーザー名かパスワードが間違っています。');
+        }
+    }
+    // ログアウト処理
+    public function logout()
+    {
+        // セッションを破棄
+        $this->request->session()->destroy();
+        return $this->redirect($this->Auth->logout());
+    }
+
+    // 認証を使わないページの設定
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['login', 'add']);
     }
 }
