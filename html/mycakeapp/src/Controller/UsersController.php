@@ -78,4 +78,10 @@ class UsersController extends AppController
         $this->Flash->success('ログアウトしました。');
         return $this->redirect($this->Auth->logout());
     }
+    // 認証なしにアクセス可能
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['logout', 'add']);
+    }
 }
