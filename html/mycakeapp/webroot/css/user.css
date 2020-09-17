@@ -58,6 +58,27 @@ input[type=submit]{
 ul{
     list-style: none;
 }
-.centerize a{
+.wrapper_login{
+    background: #fff;
+    margin: 0 auto;
+    padding-top: 118px;
+    letter-spacing: 1px;
+    width: 736px;
+    height: 450px;
+}
+.registration{
+    font-size: 14px;
+    margin: -56px 330px 26px 330px;
+}
+.registration a{
     color: #707070;
+    text-decoration: none;
+}
+.password_reminder{
+    font-size: 14px;
+    margin: 0px 263px 26px 263px;
+}
+.password_reminder a{ 
+    color: #707070;
+    text-decoration: none;
 }
