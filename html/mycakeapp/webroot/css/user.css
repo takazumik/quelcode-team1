@@ -58,3 +58,6 @@ input[type=submit]{
 ul{
     list-style: none;
 }
+.centerize a{
+    color: #707070;
+}
