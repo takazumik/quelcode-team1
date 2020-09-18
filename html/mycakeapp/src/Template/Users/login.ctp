@@ -8,6 +8,7 @@
     <?= $this->Form->control('password', ['type' => 'password', 'placeholder' => 'パスワード', 'required' => false, 'label' => false]) ?>
     <?= $this->Form->submit('ログイン') ?>
     <?= $this->Form->end() ?>
+    <?= var_dump($user); ?>
     <div class="registration">
         <?= $this->Html->link(
             "会員登録",

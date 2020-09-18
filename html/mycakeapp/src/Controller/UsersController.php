@@ -72,23 +72,57 @@ class UsersController extends AppController
             $this->Flash->error('ユーザー名またはパスワードが不正です。');
         }
     }
-    public function login()
+    public function login02()
     {
         $this->loadModel('Users');
 
         if ($this->request->is('post')) {
-            $email = $this->request->getData('email');
-            $password = $this->request->getData('password');
 
-            $user = $this->Users->findByEmailAndPassword($email, $password)->first();
-            if ($user && (new DefaultPasswordHasher())->check($password, $user->password)) {
-                $this->Auth->setUser($user);
-                return $this->redirect('/users');
-            } else {
-                $this->Flash->error('ユーザー名またはパスワードが不正です。');
-            }
+            // $email = $this->request->getData('email');
+            // $password = $this->request->getData('password');
+
+            // $user = $this->Users->findByEmailAndPassword($email, $password)->first();
+
+
+
+            $user =  $this->Users->get(1);
+            // if ($user && (new DefaultPasswordHasher())->check($password, $user->password)) {
+            //     $this->Auth->setUser($user);
+            //     // return $this->redirect('/users');
+            // }
+            //  elseif ($_POST['email'] !== $email) {
+            //     $this->Flash->error('メールアドレスが不正です。');
+            // } else {
+            //     $this->Flash->error('ユーザー名とパスワードが不正です。');
+            // }
+            // $this->set(compact('user'));
+            print_r($user);
+            echo 'www';
+            var_dump($_POST['email']);
         }
     }
+
+    public function login()
+    {
+        $this->loadModel('Users');
+        $user = $this->Users->get(1);
+        echo 'www';
+        var_dump($_POST['email']);
+
+        var_dump($user['email']);
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
+                return $this->redirect($this->Auth->redirectUrl('/users'));
+            } elseif ($_POST['email'] !== $user['email']) {
+                $this->Flash->error('メールアドレスが不正です。');
+            }
+        }
+        $this->Flash->error('ユーザー名またはパスワードが不正です。');
+    }
+
     public function _validate($id = null)
     {
         $email = $this->Users->get($id);
