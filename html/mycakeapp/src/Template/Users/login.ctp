@@ -2,7 +2,8 @@
     $this->Html->css('user.css'); ?>
 <h1>ログイン</h1>
 <div class="wrapper_login">
-    <?= $this->Form->create() ?>
+    <?= $this->Form->create(null, ['novalidate' => true]) ?>
+
     <?= $this->Form->control('email', ['type' => 'email', 'placeholder' => 'メールアドレス', 'required' => false, 'label' => false]) ?>
     <?= $this->Form->control('password', ['type' => 'password', 'placeholder' => 'パスワード', 'required' => false, 'label' => false]) ?>
     <?= $this->Form->submit('ログイン') ?>
