@@ -60,7 +60,7 @@ class UsersController extends AppController
     }
 
 
-    public function login()
+    public function login01()
     {
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
@@ -72,6 +72,28 @@ class UsersController extends AppController
             $this->Flash->error('ユーザー名またはパスワードが不正です。');
         }
     }
+    public function login()
+    {
+        $this->loadModel('Users');
+
+        if ($this->request->is('post')) {
+            $email = $this->request->getData('email');
+            $password = $this->request->getData('password');
+
+            $user = $this->Users->findByEmailAndPassword($email, $password)->first();
+            if ($user && (new DefaultPasswordHasher())->check($password, $user->password)) {
+                $this->Auth->setUser($user);
+                return $this->redirect('/users');
+            } else {
+                $this->Flash->error('ユーザー名またはパスワードが不正です。');
+            }
+        }
+    }
+    public function _validate($id = null)
+    {
+        $email = $this->Users->get($id);
+        $password = $this->Users->get($id);
+    }
 
     // ログアウト処理
     public function logout()
@@ -82,7 +104,14 @@ class UsersController extends AppController
     // 認証なしにアクセス可能なアクション
     public function initialize()
     {
+        $this->loadModel('Users');
         parent::initialize();
         $this->Auth->allow(['logout', 'add']);
+    }
+
+    public function index($id = null)
+    {
+        $user = $this->Users;
+        $this->set(compact('user'));
     }
 }
