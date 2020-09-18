@@ -105,12 +105,17 @@ class UsersController extends AppController
     public function login()
     {
         $this->loadModel('Users');
-        $user = $this->Users->get(1);
-        echo 'www';
-        var_dump($_POST['email']);
+        // $user = $this->Users->findByEmailOrPassword('aaa@gmail.com', 'aaaa');
+        // var_dump($user->email);
 
-        var_dump($user['email']);
+
+        // var_dump($user['email']);
         if ($this->request->is('post')) {
+
+            $user = $this->Users->find()->where(['email' => $_POST['email']])->first();
+
+            var_dump($user);
+
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
