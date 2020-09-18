@@ -66,6 +66,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
+                // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
                 return $this->redirect($this->Auth->redirectUrl('/users'));
             }
             $this->Flash->error('ユーザー名またはパスワードが不正です。');
