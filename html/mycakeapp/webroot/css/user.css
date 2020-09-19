@@ -82,3 +82,6 @@ ul{
     color: #707070;
     text-decoration: none;
 }
+.error{
+    color: #ff0000;
+}

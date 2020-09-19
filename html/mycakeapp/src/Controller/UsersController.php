@@ -109,17 +109,23 @@ class UsersController extends AppController
 
             $user_data = $this->Users->find()->where(['email' => $_POST['email']])->first();
 
-            var_dump($user_data);
-
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
                 // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
                 return $this->redirect($this->Auth->redirectUrl('/users'));
             } elseif ($_POST['email'] !== $user_data['email']) {
-                $this->Flash->error('メールアドレスが不正です。');
+                $this->Html->para(
+                    'p_style',
+                    'メールアドレスが間違っているようです。',
+                    ['align' => 'center', 'font-size' => '24px']
+                );
             } else {
-                $this->Flash->error('パスワードが不正です。');
+                $this->Html->para(
+                    'p_style',
+                    'パスワードが間違っているようです。',
+                    ['align' => 'center', 'font-size' => '24px']
+                );
             }
         }
     }
