@@ -104,9 +104,11 @@ class UsersController extends AppController
 
     public function login()
     {
+        // Usersテーブルにあるデータと照合をかけるのでUsersテーブルを呼び出している
         $this->loadModel('Users');
         if ($this->request->is('post')) {
 
+            // postされたemailと同じアドレスを持つユーザーを検索している
             $user_data = $this->Users->find()->where(['email' => $_POST['email']])->first();
 
             $user = $this->Auth->identify();
@@ -115,6 +117,7 @@ class UsersController extends AppController
                 // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
                 return $this->redirect($this->Auth->redirectUrl('/users'));
             } elseif ($_POST['email'] !== $user_data['email']) {
+                // エラー文はページ全体の絶対値で出してるのでヘッダー、フッター完成後に位置調整必要
                 $this->Flash->error('メールアドレスが間違っているようです。');
             } else {
                 $this->Flash->error('パスワードが間違っているようです。');
