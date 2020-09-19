@@ -112,20 +112,20 @@ class UsersController extends AppController
         // var_dump($user['email']);
         if ($this->request->is('post')) {
 
-            $user = $this->Users->find()->where(['email' => $_POST['email']])->first();
+            $user_data = $this->Users->find()->where(['email' => $_POST['email']])->first();
 
-            var_dump($user);
-
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
-                // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
-                return $this->redirect($this->Auth->redirectUrl('/users'));
-            } elseif ($_POST['email'] !== $user['email']) {
-                $this->Flash->error('メールアドレスが不正です。');
+            if ($user_data['email'] === $_POST['email']) {
+                if ($user_data['password'] === $_POST['password']) {
+                    $user = $this->Auth->identify();
+                    $this->Auth->setUser($user);
+                    // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
+                    return $this->redirect($this->Auth->redirectUrl('/users'));
+                }
+            } else {
+                $this->Flash->error('パスワードが不正です。');
             }
+            $this->Flash->error('メールアドレスかパスワードが不正です。');
         }
-        $this->Flash->error('ユーザー名またはパスワードが不正です。');
     }
 
     public function _validate($id = null)
