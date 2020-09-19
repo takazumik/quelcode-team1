@@ -115,17 +115,9 @@ class UsersController extends AppController
                 // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
                 return $this->redirect($this->Auth->redirectUrl('/users'));
             } elseif ($_POST['email'] !== $user_data['email']) {
-                $this->Html->para(
-                    'p_style',
-                    'メールアドレスが間違っているようです。',
-                    ['align' => 'center', 'font-size' => '24px']
-                );
+                $this->Flash->error('メールアドレスが間違っているようです。');
             } else {
-                $this->Html->para(
-                    'p_style',
-                    'パスワードが間違っているようです。',
-                    ['align' => 'center', 'font-size' => '24px']
-                );
+                $this->Flash->error('パスワードが間違っているようです。');
             }
         }
     }
