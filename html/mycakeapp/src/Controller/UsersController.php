@@ -63,7 +63,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
 
             // postされたemailと同じアドレスを持つユーザーを検索している
-            $user_data = $this->Users->find()->where(['email' => $_POST['email']])->first();
+            $user_data = $this->Users->find()->where(['email' => $_POST['email'], 'is_registrated' => 1]);
 
             $user = $this->Auth->identify();
             if ($user) {
