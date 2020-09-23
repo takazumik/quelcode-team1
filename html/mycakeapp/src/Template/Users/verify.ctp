@@ -8,7 +8,13 @@
 </head>
 
 <body>
-    <p>ログイン画面は<a href="#">こちら</a></p>
+    <p>ログイン画面は<?= $this->Html->link(
+                    "こちら",
+                    [
+                        "controller" => "Users",
+                        "action" => "login"
+                    ]
+                ) ?></p>
 </body>
 
 </html>
