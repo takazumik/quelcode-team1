@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Cake\Auth\DefaultPasswordHasher; //added
 use Cake\Event\Event; //added
+use Cake\Validation\Validator; //added
 
 use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
@@ -56,49 +57,6 @@ class UsersController extends AppController
         $this->Users->save($user);
     }
 
-
-    public function login01()
-    {
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
-                // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
-                return $this->redirect($this->Auth->redirectUrl('/users'));
-            }
-            $this->Flash->error('ユーザー名またはパスワードが不正です。');
-        }
-    }
-    public function login02()
-    {
-        $this->loadModel('Users');
-
-        if ($this->request->is('post')) {
-
-            // $email = $this->request->getData('email');
-            // $password = $this->request->getData('password');
-
-            // $user = $this->Users->findByEmailAndPassword($email, $password)->first();
-
-
-
-            $user =  $this->Users->get(1);
-            // if ($user && (new DefaultPasswordHasher())->check($password, $user->password)) {
-            //     $this->Auth->setUser($user);
-            //     // return $this->redirect('/users');
-            // }
-            //  elseif ($_POST['email'] !== $email) {
-            //     $this->Flash->error('メールアドレスが不正です。');
-            // } else {
-            //     $this->Flash->error('ユーザー名とパスワードが不正です。');
-            // }
-            // $this->set(compact('user'));
-            print_r($user);
-            echo 'www';
-            var_dump($_POST['email']);
-        }
-    }
-
     public function login()
     {
         // Usersテーブルにあるデータと照合をかけるのでUsersテーブルを呼び出している
@@ -120,13 +78,6 @@ class UsersController extends AppController
                 $this->Flash->error('パスワードが間違っているようです。');
             }
         }
-    }
-
-
-    public function _validate($id = null)
-    {
-        $email = $this->Users->get($id);
-        $password = $this->Users->get($id);
     }
 
     // ログアウト処理
