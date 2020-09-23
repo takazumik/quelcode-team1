@@ -90,7 +90,7 @@ class UsersController extends AppController
     {
         $this->loadModel('Users');
         parent::initialize();
-        $this->Auth->allow(['logout', 'add']);
+        $this->Auth->allow(['logout', 'add', 'verify']);
     }
 
     // ログイン成功を見ることができるよう、仮のindexアクション
