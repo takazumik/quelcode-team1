@@ -56,8 +56,11 @@ input[type=submit]{
     font-size: 7px;
 }
 .error{
-    margin: -60px 200px 30px 200px;
-    font-size: 7px; 
+    margin: -53px 200px 30px 200px;
+    font-size: 11px;
+    letter-spacing: 0.18px;
+    line-height: 15px;
+    color: #F46161;
 }
 ul{
     list-style: none;

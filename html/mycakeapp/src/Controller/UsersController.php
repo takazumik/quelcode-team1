@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Cake\Auth\DefaultPasswordHasher; // added
 use Cake\Event\Event; // added
-use Cake\Validation\Validator; // 独自のバリデーションを使うために呼び出し
 
 use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
@@ -59,9 +58,6 @@ class UsersController extends AppController
 
     public function login()
     {
-        // 独自バリデーションのためのnew
-        $validator = new Validator();
-
         // Usersテーブルにあるデータと照合をかけるのでUsersテーブルを呼び出している
         $this->loadModel('Users');
         if ($this->request->is('post')) {
@@ -75,7 +71,7 @@ class UsersController extends AppController
                 // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
                 return $this->redirect($this->Auth->redirectUrl('/users'));
             } elseif ($_POST['email'] !== $user_data['email']) {
-                // エラー文はページ全体の絶対値で出してるのでヘッダー、フッター完成後に位置調整必要
+                // エラー文はヘッダー、フッター完成後に位置調整必要
                 $this->set('mail_error', 'メールアドレスが間違っているようです。');
             } else {
                 $this->set('pass_error', 'パスワードが間違っているようです。');
@@ -95,11 +91,5 @@ class UsersController extends AppController
         $this->loadModel('Users');
         parent::initialize();
         $this->Auth->allow(['logout', 'add']);
-    }
-
-    public function index($id = null)
-    {
-        $user = $this->Users;
-        $this->set(compact('user'));
     }
 }

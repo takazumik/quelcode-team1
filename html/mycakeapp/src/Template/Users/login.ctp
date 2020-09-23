@@ -4,7 +4,9 @@
 <div class="wrapper_login">
     <?= $this->Form->create(null, ['novalidate' => true]) ?>
     <?= $this->Form->control('email', ['type' => 'email', 'placeholder' => 'メールアドレス', 'required' => false, 'label' => false]) ?>
+    <!-- エラーがない場合にundefinedの警告を出さないための条件分岐 -->
     <?php if (isset($mail_error)) {
+        // エラー文にclassを付与するためのhtmlヘルパー
         echo $this->Html->tag('div', 'メールアドレスが間違っているようです。', array('class' => 'error'));
     }; ?>
     <?= $this->Form->control('password', ['type' => 'password', 'placeholder' => 'パスワード', 'required' => false, 'label' => false]) ?>
@@ -13,6 +15,7 @@
     }; ?>
     <?= $this->Form->submit('ログイン') ?>
     <?= $this->Form->end() ?>
+
     <div class="registration">
         <?= $this->Html->link(
             "会員登録",
