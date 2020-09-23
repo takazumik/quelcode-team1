@@ -92,4 +92,13 @@ class UsersController extends AppController
         parent::initialize();
         $this->Auth->allow(['logout', 'add']);
     }
+
+    // ログイン成功を見ることができるよう、仮のindexアクション
+    public function index()
+    {
+        $users = $this->paginate($this->Users);
+
+        $this->set(compact('users'));
+        $this->set('_serialize', ['users']);
+    }
 }
