@@ -1,3 +1,6 @@
+
+
+
 body{
     background: #EBEBEB;
     color: #ff0000;
@@ -55,6 +58,10 @@ input[type=submit]{
     margin: -60px 200px 0px 200px;
     font-size: 7px;
 }
+/* .message{
+    margin: 500px 200px 0px 200px;
+    font-size: 7px;
+} */
 ul{
     list-style: none;
 }
@@ -81,6 +88,10 @@ ul{
 .password_reminder a{ 
     color: #707070;
     text-decoration: none;
+}
+form{
+    padding: -200px 0px 0px 0px;
+    font-size: 7px;
 }
 /* .error{
     color: #ff0000;

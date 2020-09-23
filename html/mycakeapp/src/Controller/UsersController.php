@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use Cake\Auth\DefaultPasswordHasher; //added
-use Cake\Event\Event; //added
-use Cake\Validation\Validator; //added
+use Cake\Auth\DefaultPasswordHasher; // added
+use Cake\Event\Event; // added
+use Cake\Validation\Validator; // 独自のバリデーションを使うために呼び出し
 
 use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
@@ -59,6 +59,9 @@ class UsersController extends AppController
 
     public function login()
     {
+        // 独自バリデーションのためのnew
+        $validator = new Validator();
+
         // Usersテーブルにあるデータと照合をかけるのでUsersテーブルを呼び出している
         $this->loadModel('Users');
         if ($this->request->is('post')) {
@@ -73,9 +76,9 @@ class UsersController extends AppController
                 return $this->redirect($this->Auth->redirectUrl('/users'));
             } elseif ($_POST['email'] !== $user_data['email']) {
                 // エラー文はページ全体の絶対値で出してるのでヘッダー、フッター完成後に位置調整必要
-                $this->Flash->error('メールアドレスが間違っているようです。');
+                $this->set('mail_error', 'メールアドレスが間違っているようです。');
             } else {
-                $this->Flash->error('パスワードが間違っているようです。');
+                $this->set('pass_error', 'パスワードが間違っているようです。');
             }
         }
     }
