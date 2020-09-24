@@ -10,14 +10,14 @@
         echo $this->Html->tag('div', 'メールアドレスが間違っているようです。', array('class' => 'login_error'));
     }; ?>
     <?php if (isset($mail_vacant)) {
-        echo $this->Html->tag('div', '空白になっています', array('class' => 'login_error'));
+        echo $this->Html->tag('div', '空白になっています。', array('class' => 'login_error'));
     }; ?>
     <?= $this->Form->control('password', ['type' => 'password', 'placeholder' => 'パスワード', 'required' => false, 'label' => false]) ?>
     <?php if (isset($pass_error)) {
         echo $this->Html->tag('div', 'パスワードが間違っているようです。', array('class' => 'login_error'));
     }; ?>
     <?php if (isset($password_vacant)) {
-        echo $this->Html->tag('div', '空白になっています', array('class' => 'login_error'));
+        echo $this->Html->tag('div', '空白になっています。', array('class' => 'login_error'));
     }; ?>
     <?= $this->Form->submit('ログイン') ?>
     <?= $this->Form->end() ?>
