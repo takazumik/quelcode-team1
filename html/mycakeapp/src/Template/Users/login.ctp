@@ -21,7 +21,6 @@
     }; ?>
     <?= $this->Form->submit('ログイン') ?>
     <?= $this->Form->end() ?>
-
     <div class="registration">
         <?= $this->Html->link(
             "会員登録",

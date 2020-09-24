@@ -61,13 +61,10 @@ class UsersController extends AppController
         // Usersテーブルにあるデータと照合をかけるのでUsersテーブルを呼び出している
         $this->loadModel('Users');
         if ($this->request->is('post')) {
-
             // postされたemailと同じアドレスを持つユーザーを検索している
             $user_data = $this->Users->find()->where(['email' => $_POST['email'], 'is_registrated' => true])->first();
-
             // メールアドレスの正規表現
             $reg_str = "/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/";
-
             $user = $this->Auth->identify();
             if ($user && $user_data['is_registrated'] === true) {
                 $this->Auth->setUser($user);
@@ -106,7 +103,6 @@ class UsersController extends AppController
     public function index()
     {
         $users = $this->paginate($this->Users);
-
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
     }
