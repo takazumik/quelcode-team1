@@ -24,6 +24,8 @@
                 <th scope="col"><?= $this->Paginator->sort('card_holder') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('security_code') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('is_deleted') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -37,6 +39,11 @@
                 <td><?= h($creditCard->card_holder) ?></td>
                 <td><?= $this->Number->format($creditCard->security_code) ?></td>
                 <td><?= h($creditCard->is_deleted) ?></td>
+<<<<<<< HEAD
+=======
+                <td><?= h($creditCard->created) ?></td>
+                <td><?= h($creditCard->modified) ?></td>
+>>>>>>> 07271fd... 仮で機能作成
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $creditCard->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $creditCard->id]) ?>

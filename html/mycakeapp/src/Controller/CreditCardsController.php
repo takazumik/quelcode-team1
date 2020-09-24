@@ -17,6 +17,7 @@ class CreditCardsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+
     public function index()
     {
         $this->paginate = [
@@ -50,8 +51,12 @@ class CreditCardsController extends AppController
      */
     public function add()
     {
+        $this->loadModel('CreditCards');
+
         $creditCard = $this->CreditCards->newEntity();
         if ($this->request->is('post')) {
+            var_dump($this->request->getData());
+            
             $creditCard = $this->CreditCards->patchEntity($creditCard, $this->request->getData());
             if ($this->CreditCards->save($creditCard)) {
                 $this->Flash->success(__('The credit card has been saved.'));

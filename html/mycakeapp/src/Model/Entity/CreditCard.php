@@ -13,6 +13,8 @@ use Cake\ORM\Entity;
  * @property string $card_holder
  * @property int $security_code
  * @property bool $is_deleted
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
  *
  * @property \App\Model\Entity\User $user
  */
@@ -34,6 +36,5 @@ class CreditCard extends Entity
         'card_holder' => true,
         'security_code' => true,
         'is_deleted' => true,
-        'user' => true,
     ];
 }

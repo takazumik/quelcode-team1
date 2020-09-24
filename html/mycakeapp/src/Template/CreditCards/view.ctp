@@ -43,6 +43,14 @@
             <td><?= $this->Number->format($creditCard->security_code) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Created') ?></th>
+            <td><?= h($creditCard->created) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Modified') ?></th>
+            <td><?= h($creditCard->modified) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Is Deleted') ?></th>
             <td><?= $creditCard->is_deleted ? __('Yes') : __('No'); ?></td>
         </tr>

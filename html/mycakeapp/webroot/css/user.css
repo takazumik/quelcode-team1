@@ -1,9 +1,10 @@
-body{
+body {
     background: #EBEBEB;
-    color: #ff0000;
+    /* color: #ff0000; */
 }
-h1{
-    padding:  83px 0px 36px 0px;
+
+h1 {
+    padding: 83px 0px 36px 0px;
     margin: 0 auto;
     text-align: center;
     font-size: 25px;
@@ -12,7 +13,8 @@ h1{
     letter-spacing: 0.89px;
     color: #707070;
 }
-.wrapper{
+
+.wrapper {
     background: #fff;
     margin: 0 auto;
     padding-top: 118px;
@@ -20,17 +22,20 @@ h1{
     width: 736px;
     height: 552px;
 }
-label{
+
+label {
     display: inline;
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.27px;
     margin: 0px 100px 20px 100px;
 }
+
 input[type=email],
 input[type=password],
-input[type=password_check]
-{
+input[type=password_check],
+input[type=text],
+input[type=number] {
     width: 336px;
     height: 36px;
     margin: 0px 200px 60px 200px;
@@ -39,7 +44,8 @@ input[type=password_check]
     border-right: 0px solid #fff;
     border-bottom: 1px solid #00000015;
 }
-input[type=submit]{
+
+input[type=submit] {
     width: 336px;
     height: 48px;
     margin: 0px 200px 88px 200px;
@@ -51,7 +57,14 @@ input[type=submit]{
     line-height: 22px;
     letter-spacing: 0.44px;
 }
-.error-message{
+
+.checkbox {
+    margin: 0px 0 0 0;
+    font-size: 2px;
+    color: blue;
+}
+
+.error-message {
     margin: -60px 200px 0px 200px;
     font-size: 7px;
     color: #F46161;
@@ -63,7 +76,8 @@ input[type=submit]{
     line-height: 15px;
     color: #F46161;
 }
-ul{
+
+ul {
     list-style: none;
 }
 .wrapper_login{
