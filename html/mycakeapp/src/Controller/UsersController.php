@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Cake\Auth\DefaultPasswordHasher; // added
+use Cake\Event\Event; // added
+
 use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
 use Token\Util\Token;
@@ -26,10 +29,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
                 $this->setAction('mail', $user);
-            } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('user'));
@@ -55,5 +55,56 @@ class UsersController extends AppController
         );
         $user = $this->Users->patchEntity($entity, $data);
         $this->Users->save($user);
+    }
+
+    public function login()
+    {
+        // Usersテーブルにあるデータと照合をかけるのでUsersテーブルを呼び出している
+        $this->loadModel('Users');
+        if ($this->request->is('post')) {
+            // postされたemailと同じアドレスを持つユーザーを検索している
+            $user_data = $this->Users->find()->where(['email' => $this->request->getData('email'), 'is_registrated' => true])->first();
+            // メールアドレスの正規表現
+            $reg_str = "/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/";
+            $user = $this->Auth->identify();
+            if ($user && $user_data['is_registrated'] === true) {
+                $this->Auth->setUser($user);
+                // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
+                return $this->redirect($this->Auth->redirectUrl('/users'));
+            } elseif ($this->request->getData('email') === '') {
+                $this->set('mail_vacant', '空白になっています。');
+            } elseif (preg_match($reg_str, $this->request->getData('email')) === false) {
+                $this->set('mail_format', 'メールアドレスが間違っているようです。');
+            } elseif ($this->request->getData('email') !== $user_data['email']) {
+                // エラー文はヘッダー、フッター完成後に位置調整必要
+                $this->set('mail_error', 'メールアドレスが間違っているようです。');
+            } elseif ($this->request->getData('password') === '') {
+                $this->set('password_vacant', '空白になっています。');
+            } else {
+                $this->set('pass_error', 'パスワードが間違っているようです。');
+            }
+        }
+    }
+
+    // ログアウト処理
+    public function logout()
+    {
+        $this->Flash->success('ログアウトしました。');
+        return $this->redirect($this->Auth->logout());
+    }
+    // 認証なしにアクセス可能なアクション
+    public function initialize()
+    {
+        $this->loadModel('Users');
+        parent::initialize();
+        $this->Auth->allow(['logout', 'add', 'verify', 'login']);
+    }
+
+    // ログイン成功を見ることができるよう、仮のindexアクション
+    public function index()
+    {
+        $users = $this->paginate($this->Users);
+        $this->set(compact('users'));
+        $this->set('_serialize', ['users']);
     }
 }

@@ -2,15 +2,6 @@
 a.disabled {
     pointer-events: none;
 }
-
-a:hover {
-    color: #15848F;
-}
-
-a {
-    color: #1798A5;
-}
-
 .side-nav li a:not(.button) {
     color: #15848F;
 }
@@ -400,7 +391,7 @@ button {
     background: #966600;
 }
 
-div.message {
+/* div.message {
     text-align: center;
     cursor: pointer;
     display: block;
@@ -415,9 +406,9 @@ div.message {
     overflow: hidden;
     height: 50px;
     line-height: 2.5em;
-}
+} */
 
-div.message:before {
+/* div.message:before {
     line-height: 0px;
     font-size: 20px;
     height: 12px;
@@ -432,21 +423,21 @@ div.message:before {
     padding: 12px 14px 12px 10px;
     content: "i";
     color: #a0d3e8;
-}
+} */
 
-div.message.error {
+/* div.message.error {
     background-color: #C3232D;
     color: #FFF;
-}
+} */
 
-div.message.error:before {
+/* div.message.error:before {
     padding: 11px 16px 14px 7px;
     color: #C3232D;
     content: "x";
-}
-div.message.hidden {
+} */
+/* div.message.hidden {
     height: 0;
-}
+} */
 
 
 .vertical-table th {
