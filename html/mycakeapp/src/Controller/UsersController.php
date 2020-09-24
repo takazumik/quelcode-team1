@@ -63,10 +63,10 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
 
             // postされたemailと同じアドレスを持つユーザーを検索している
-            $user_data = $this->Users->find()->where(['email' => $_POST['email'], 'is_registrated' => 1]);
+            $user_data = $this->Users->find()->where(['email' => $_POST['email'], 'is_registrated' => true])->first();
 
             $user = $this->Auth->identify();
-            if ($user) {
+            if ($user && $user_data['is_registrated'] === true) {
                 $this->Auth->setUser($user);
                 // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
                 return $this->redirect($this->Auth->redirectUrl('/users'));
@@ -90,7 +90,7 @@ class UsersController extends AppController
     {
         $this->loadModel('Users');
         parent::initialize();
-        $this->Auth->allow(['logout', 'add', 'verify']);
+        $this->Auth->allow(['logout', 'add', 'verify', 'login']);
     }
 
     // ログイン成功を見ることができるよう、仮のindexアクション

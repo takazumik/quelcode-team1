@@ -54,7 +54,8 @@ class AppController extends Controller
                 'Form' => [
                     'fields' => [
                         'username' => 'email',
-                        'password' => 'password'
+                        'password' => 'password',
+
                     ]
                 ]
             ],
