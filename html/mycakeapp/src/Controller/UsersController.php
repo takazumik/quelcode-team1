@@ -62,7 +62,7 @@ class UsersController extends AppController
         $this->loadModel('Users');
         if ($this->request->is('post')) {
             // postされたemailと同じアドレスを持つユーザーを検索している
-            $user_data = $this->Users->find()->where(['email' => $_POST['email'], 'is_registrated' => true])->first();
+            $user_data = $this->Users->find()->where(['email' => $this->request->getData('email'), 'is_registrated' => true])->first();
             // メールアドレスの正規表現
             $reg_str = "/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/";
             $user = $this->Auth->identify();
@@ -70,14 +70,14 @@ class UsersController extends AppController
                 $this->Auth->setUser($user);
                 // ログイン後にリダイレクトするURLが決まり次第()の中を書き換えて下さい
                 return $this->redirect($this->Auth->redirectUrl('/users'));
-            } elseif ($_POST['email'] === '') {
+            } elseif ($this->request->getData('email') === '') {
                 $this->set('mail_vacant', '空白になっています。');
-            } elseif (preg_match($reg_str, $_POST['email']) === false) {
+            } elseif (preg_match($reg_str, $this->request->getData('email')) === false) {
                 $this->set('mail_format', 'メールアドレスが間違っているようです。');
-            } elseif ($_POST['email'] !== $user_data['email']) {
+            } elseif ($this->request->getData('email') !== $user_data['email']) {
                 // エラー文はヘッダー、フッター完成後に位置調整必要
                 $this->set('mail_error', 'メールアドレスが間違っているようです。');
-            } elseif ($_POST['password'] === '') {
+            } elseif ($this->request->getData('password') === '') {
                 $this->set('password_vacant', '空白になっています。');
             } else {
                 $this->set('pass_error', 'パスワードが間違っているようです。');
