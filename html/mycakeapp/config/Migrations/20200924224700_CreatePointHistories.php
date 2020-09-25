@@ -14,11 +14,6 @@ class CreatePointHistories extends AbstractMigration
     public function change()
     {
         $table = $this->table('point_histories');
-        $table->addColumn('Point_histories', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => false,
-        ]);
         $table->addColumn('payment_history', 'integer', [
             'default' => null,
             'limit' => 255,
